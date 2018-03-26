@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-26T02:32:52.300Z</updated>
+  <updated>2018-03-26T03:01:14.329Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>https 和 http 的区别</title>
+    <link href="http://yoursite.com/2018/03/26/https-%E5%92%8C-http-%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2018/03/26/https-和-http-的区别/</id>
+    <published>2018-03-26T02:52:20.000Z</published>
+    <updated>2018-03-26T03:01:14.329Z</updated>
+    
+    <content type="html"><![CDATA[<p>在详细探究HTTP与HTTPS之前，先理清一下HTTP的基本概念：</p><blockquote><p>HTTP中文叫做超文本传输协议,是客户端浏览器或其他程序与Web服务器之间的应用层通信协议。<br>HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在详细探究HTTP与HTTPS之前，先理清一下HTTP的基本概念：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HTTP中文叫做超文本传输协议,是客户端浏览器或其他程序与Web服务器之间的应用层通信协议。&lt;br&gt;HTTPS（全称：Hyper Text Transfer Prot
+      
+    
+    </summary>
+    
+    
+      <category term="计算机网络" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo搭建博客进阶</title>
