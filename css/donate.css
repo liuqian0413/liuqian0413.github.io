@@ -2,10 +2,6 @@
   text-align: center;
   margin-top: 5%;
 }
-.pay {
-  display: flex;
-  justify-content: space-between;
-}
 .donate_bar a.btn_donate {
   display: inline-block;
   width: 82px;
