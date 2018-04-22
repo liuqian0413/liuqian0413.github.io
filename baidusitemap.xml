@@ -4,13 +4,15 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/04/22/%E5%8E%9F%E7%94%9Fjs%E5%AE%9E%E7%8E%B0Ajax/</loc>
-    <lastmod>2018-04-22T06:13:02.363Z</lastmod>
+    <loc>http://yoursite.com/2018/04/22/ES6-%E8%AF%AD%E6%B3%95(5)%E2%80%94%E2%80%94Promise%E7%94%A8%E6%B3%95/</loc>
+    <lastmod>2018-04-22T09:29:18.086Z</lastmod>
     <data>
         <display>
-        <title>原生js实现Ajax</title>
-        <pubTime>2018-04-22T03:58:24.000Z</pubTime>
+        <title>ES6语法(5)——Promise用法</title>
+        <pubTime>2018-04-22T03:54:18.000Z</pubTime>
         
+        <tag>ES6</tag>
+         
          
            
         </display>
@@ -19,15 +21,30 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/04/22/ES6-%E8%AF%AD%E6%B3%95(5)%E2%80%94%E2%80%94Promise%E7%94%A8%E6%B3%95/</loc>
-    <lastmod>2018-04-22T03:57:27.193Z</lastmod>
+    <loc>http://yoursite.com/2018/03/27/JS-%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/</loc>
+    <lastmod>2018-04-22T07:11:40.855Z</lastmod>
     <data>
         <display>
-        <title>ES6语法(5)——Promise用法</title>
-        <pubTime>2018-04-22T03:54:18.000Z</pubTime>
+        <title>JS 作用域与闭包</title>
+        <pubTime>2018-03-27T06:52:43.000Z</pubTime>
         
-        <tag>ES6</tag>
+        <tag>javascript</tag>
          
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/22/%E5%8E%9F%E7%94%9Fjs%E5%AE%9E%E7%8E%B0Ajax/</loc>
+    <lastmod>2018-04-22T06:13:02.363Z</lastmod>
+    <data>
+        <display>
+        <title>原生js实现Ajax</title>
+        <pubTime>2018-04-22T03:58:24.000Z</pubTime>
+        
          
            
         </display>
@@ -125,23 +142,6 @@
         <display>
         <title>javascript 原型继承</title>
         <pubTime>2018-03-27T11:16:19.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/03/27/JS-%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/</loc>
-    <lastmod>2018-03-28T02:38:07.062Z</lastmod>
-    <data>
-        <display>
-        <title>JS 作用域与闭包</title>
-        <pubTime>2018-03-27T06:52:43.000Z</pubTime>
         
         <tag>javascript</tag>
          
