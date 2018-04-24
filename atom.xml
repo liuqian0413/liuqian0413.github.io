@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-22T06:13:02.363Z</updated>
+  <updated>2018-04-24T11:59:32.866Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>get和post方法的区别</title>
+    <link href="http://yoursite.com/2018/04/23/get%E5%92%8Cpost%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2018/04/23/get和post方法的区别/</id>
+    <published>2018-04-23T10:57:28.000Z</published>
+    <updated>2018-04-24T11:59:32.866Z</updated>
+    
+    <content type="html"><![CDATA[<p>HTTP协议中GET和POST方法的区别已经是老生常谈了，也是面试热门话题，我对此只有一个粗浅的印象，今天腾讯一面又被<br>问到了，所以想写一篇文章好好整理一下。</p><h1 id="通常的理解"><a href="#通常的理解" class="headerlink" title="通常的理解"></a>通常的理解</h1><p>w3cschools关于这个问题的解答<a href="http://www.w3school.com.cn/tags/html_ref_httpmethods.asp" target="_blank" rel="noopener">比较 GET 与 POST</a>列出了<br><strong>一般的理解：</strong></p><table><thead><tr><th>方法</th><th>GET</th><th>POST</th></tr></thead><tbody><tr><td>后退按钮/刷新</td><td>无害（客户端向服务器的资源发起的请求不会引起服务端的任何状态变化）</td><td>数据会被重新提交（浏览器应该告知用户数据会被重新提交）</td></tr><tr><td>书签</td><td>可收藏为书签</td><td>不可收藏为书签</td></tr><tr><td>缓存</td><td>能被缓存</td><td>不能缓存</td></tr><tr><td>编码类型</td><td>application/x-www-form-urlencoded</td><td>application/x-www-form-urlencoded或mutipart/form-data。为二进制数据使用多重编码。</td></tr><tr><td>历史</td><td>参数保留在浏览器历史中</td><td>参数不会保存在浏览器历史中</td></tr><tr><td>对数据长度的限制</td><td>是的。当发送数据时，GET方法向URL添加数据；URL的长度是受限制的（URL的最大长度是2048个字符）</td><td>无限制</td></tr><tr><td>对数据类型的限制</td><td>只允许ASCII字符</td><td>没有限制。也允许二进制数据</td></tr><tr><td>安全性</td><td>与POST相比，GET的安全性较差，因为所发送的数据是URL的一部分。在发送密码或其他敏感信息时绝不要使用GET！</td><td>POST比GET更安全，因为参数不会被保存在浏览器历史或web服务器日志中</td></tr><tr><td>可见性</td><td>数据在URL中对所有人都是可见的。</td><td>数据不会显示在URL中。</td></tr></tbody></table><blockquote><p>后来经同学指出，这里关于<strong>URL的长度受限制</strong>这一点是不对的，HTTP协议并没有限制URL的长度，具体的长度是由<strong>浏览器和系统</strong>来约束的。</p></blockquote><p>这个对比只是给出了一些现象上的区别，但并没有解释为什么，对于这个问题的理解不能就停在这一层。</p><h1 id="理解错了？"><a href="#理解错了？" class="headerlink" title="理解错了？"></a>理解错了？</h1><p>有一篇文章<a href="https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&amp;mid=100000054&amp;idx=1&amp;sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd" target="_blank" rel="noopener">99%的人都理解错了HTTP中GET与POST的区别</a>否定了上述回答：”很遗憾，<br>这不是我们要的回答！”，作者说：</p><blockquote><p>GET和POST本质上就是TCP链接，并无差别。但是由于HTTP的guising和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同。<br>GET和POST还有一个重大区别，简单的说：GET产生一个TCP数据报：POST产生两个TCP数据包。对于GET方式的请求，浏览器会把http header和data一起发送出去，服务器行用200（返回数据）;而对于POST，浏览器先发送header，服务器响应100 continue，浏览器仔发送</p></blockquote><p>都讲到TCP了，感觉很高大上有木有，起码当时看到这篇文章的我是信了的。</p><p>因为POST需要两步，时间上消耗的更多一些，看起来GET比POST更高效。因此Yahoo团队有推荐用GET替换POST来优化网站性能。但是这是一个坑！跳入需谨慎。为什么？</p><ol><li>GET与POST都有自己的语意，不能随便混用。</li><li>据研究，在网络环境好的情况下，发一次包的时间和发两次包的时间差别基本可以无视。而在网络环境差的情况下，两次包的TCP在验证包完整性上，有非常大的优点。</li><li>并不是所有的浏览器都会在POST中发送两次包，Firefox就只发送一次。</li></ol><h1 id="反转？"><a href="#反转？" class="headerlink" title="反转？"></a>反转？</h1><p>但是在逛知乎时有看到这篇文章”<a href="https://zhuanlan.zhihu.com/p/25028045" target="_blank" rel="noopener">听说『99% 的人都理解错了 HTTP 中 GET 与 POST 的区别』？？</a>指出了前文中的两个错误：</p><blockquote><p>100 continue 只有在请求里带了Expect：100-continue header的时候才有意义。</p></blockquote><blockquote><p>我们通常在讨论GET和POST的时候，实际上讨论的是specification，而不是implementation。什么是specification？说白了就是相关的RFC。implementation则是实现了specification中描述的代码/库/产品，比如crul,python的requests库，或者Chrome。<br>POST请求怎么发送，根本就不是这段RFC在讨论的事情。RFC中只说明了 100 continue 和 Expect header 的联系，比如你想在GET请求里带body，一样可以发送两个TCP Expect：100-continue并等待100continue，这是符合标准的。<br>也就是说<code>XHR发送两个TCP packets</code>是关于implementation的知识，而不是关于specification的知识。你不能说<code>Chrome 在 Ajax POST 的时候会发两个TCP packets，GET只发送一个</code> 是GET和POST的区别，正如你不能因为北京PM2.5经常爆表就说国家关于工业废弃排放的标准有问题。</p></blockquote><p> 说的似乎更有道理，而且也搬出了RFC，specification，implementation这些高端词汇，这下子我这个吃瓜群众再也坐不住了，决定亲自去研究一下。</p><h1 id="RFC探秘"><a href="#RFC探秘" class="headerlink" title="RFC探秘"></a>RFC探秘</h1><p> 首先，什么是RFC呢？简单理解就是互联网的规范，我们通常说所的<code>协议</code>就是RFC的形式存在。其中RFC7231里设计到了几个HTTP方法。其中牵涉到了一个很重要的词语：semantic<code>语义</code>，那么什么语义呢？</p><blockquote><p>一种语言是合法句子的结合。什么样的句子是合法的呢？可以从两方面来判断：语法和语义。语法是和文法结构有关，然而语义是和按照这个结构所组合的单词符号的意义有关。合理的语法结构并不表明语义是合法的。<br> 例如我们常说：<strong>我上大学</strong>，这个句子是符合语法规则的，也是符合预期规则的。但是<strong>大学上我</strong>，虽然符合语法规则，但没有什么意义，所以说是不符合语义的。</p></blockquote><p> 对于HTTP请求来说，语法是请求相应的格式，比如请求第一行必须是<code>方法名 URI 协议/版本</code>这样的格式，具体内容可以参见之前写的《图解HTTP》读书笔记里面的内容，凡事符合这个格式的请求都是合法的。</p><p> 语义则定义了这一类型的请求具有什么样的性质。比如GET的语义就是获取资源，POST的语义是处理资源，那么在具体实现这两个方法时，就必须考虑其语义，作出符合其语义的行为。</p><p> 当然在符合语法前提下实现违背语义的行为也是可以做到的，比如使用GET方法修改用户信息，POST获取资源列表，这样就只能说这个请求是<code>合法</code>的，但不是<code>符合语义</code>的。</p><p> RFC7231里紧接着定义了HTTP方法的几个特性：</p><ol><li>Safe - 安全<br>这里的安全和通常理解的安全意义不同，如果一个方法的语义在本质上是可读的，那么这个方法就是安全的。客户端向服务端的资源发起的请求如果使用了是安全的方法，就不应该引起任何的状态变化，因此也是无害的。此RFC定义，GET、HEAD、OPTIONS会让TRACE这几个方法是安全的。但是这个定义只是规范，并不能保证方法的实现也是安全的，服务器的实现可能会不符合方法语义，正如上文说过的使用GET修改用户信息的情况。</li><li><p>Idempotent -幂等<br>幂等的概念是指同一个请求方法执行多次和仅执行一次的效果完全相同。按照RFC规范，PUT、DELETE和安全方法都是幂等的。同样，这也仅仅是规范，服务端实现是否幂等是无法确保的。<br>引入幂等主要是为了处理同一个请求重复发送的情况。比如在请求响应前失去连接。如果方法是幂等的，就可以放心的重发一次请求。这也是浏览器在后退/刷新遇到POST会给用户提示的原因：POST语义不是幂等的，重复请求可能会带来意想不到的后果。</p></li><li><p>Cacheable - 可缓存性。<br>顾名思义就是一个方法是否可以被缓存，此RFC里GET，HEAD和某些情况下的POST都是可以缓存的，但是绝大多数的浏览器的实现里仅仅支持GET和HEAD。关于缓存的更多内容可以去看RFC7234。</p></li></ol><h1 id="语义之争"><a href="#语义之争" class="headerlink" title="语义之争"></a>语义之争</h1><p> 走到这一步，其实就明白了要理解这两个方法的本质区别，本质上是<code>语义</code>的对比而不是<code>语法</code>的对比，是<code>specification</code>的对比而不是<code>implementation</code>的对比。</p><p> 关于这两种方法的语义，RFC7231里原文已经写的很好了，翻译过来大概是：</p><ul><li><p>GET的语义是请求获取特定的资源。GET方法是安全、幂等、可缓存的（除非有<code>Cache-Control</code>Header的约束），GET方法的报文主题没有任何语义。</p></li><li><p>POST的语义是根据请求负荷（报文主题）对指定的资源作出处理，具体的处理方法视资源类型而不同。POST不安全、不幂等，（大部分实现）不可缓存。为了针对其不可缓存性，有一系列方法来进行优化，这里不详细阐述。</p></li></ul><p>还是举一个通俗的栗子吧，在微博这个场景里，GET的语义会被用在<code>看看我的Timeline上最新的20条微博</code>这样的场景，而POST的语义会被用在<code>发微博、评论、点赞</code>这样的场景中。</p><p>转自：</p><ul><li><a href="https://sunshinevvv.coding.me/blog/2017/02/09/HttpGETv.s.POST/" target="_blank" rel="noopener">HTTP协议中GET和POST方法的区别</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;HTTP协议中GET和POST方法的区别已经是老生常谈了，也是面试热门话题，我对此只有一个粗浅的印象，今天腾讯一面又被&lt;br&gt;问到了，所以想写一篇文章好好整理一下。&lt;/p&gt;
+&lt;h1 id=&quot;通常的理解&quot;&gt;&lt;a href=&quot;#通常的理解&quot; class=&quot;headerlink&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="HTTP" scheme="http://yoursite.com/tags/HTTP/"/>
+    
+  </entry>
   
   <entry>
     <title>原生js实现Ajax</title>
